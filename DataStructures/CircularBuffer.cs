@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 //using System.Collections;
 using System.Collections.Generic;
 
 namespace DataStructures
 {
-    public interface IBuffer<T>
+    public interface IBuffer<T> :IEnumerable<T>
     {
         bool IsEmpty { get; }
         void Write(T value);
@@ -34,7 +35,15 @@ namespace DataStructures
         }
         public IEnumerator<T> GetEnumerator()
         {
-            return _queue.GetEnumerator();
+            foreach (var item in _queue)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
     public class CircularBuffer<T> : Buffer<T>
