@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 
 namespace DataStructures
@@ -31,6 +31,10 @@ namespace DataStructures
         public virtual void Write(T value)
         {
             _queue.Enqueue(value);
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _queue.GetEnumerator();
         }
     }
     public class CircularBuffer<T> : Buffer<T>
